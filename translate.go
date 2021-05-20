@@ -13,8 +13,8 @@ var translator *languagetranslatorv3.LanguageTranslatorV3
 
 func init() {
 	fmt.Println("in init")
-	apiKey := os.Getenv("WATSON_API_KEY")
-	urlService := os.Getenv("WATSON_URL_SERVICE")
+	apiKey := os.Getenv("LANGUAGE_TRANSLATOR_APIKEY")
+	urlService := os.Getenv("LANGUAGE_TRANSLATOR_URL")
 
 	// initial everything
 	authenticator := &core.IamAuthenticator{
