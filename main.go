@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"os"
 )
 
 const INDEX = `<!DOCTYPE html>
@@ -23,5 +22,5 @@ func main() {
 		fmt.Fprint(w, INDEX)
 	})
 
-	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
