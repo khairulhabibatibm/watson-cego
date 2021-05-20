@@ -6,16 +6,32 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type MyInput struct {
+	word string
+}
+
 func main() {
 
 	gin.SetMode(gin.ReleaseMode)
 
 	r := gin.Default()
 
-	indoWords := TranslateWords("Selamat Pagi Semua. Senang rasanya bisa berada di sini")
+	var input MyInput
 
 	r.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{"data": indoWords})
+		englishWord := TranslateWords("Selamat Pagi Semua. Senang rasanya bisa berada di sini")
+		c.JSON(http.StatusOK, gin.H{"data": englishWord})
+	})
+
+	r.POST("/", func(c *gin.Context) {
+		err := c.ShouldBindJSON(&input)
+		if err != nil {
+			panic(err)
+		}
+
+		englishWord := TranslateWords(input.word)
+
+		c.JSON(http.StatusOK, gin.H{"data": englishWord})
 	})
 
 	r.Run()
