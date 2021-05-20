@@ -9,8 +9,10 @@ import (
 	"github.com/watson-developer-cloud/go-sdk/v2/languagetranslatorv3"
 )
 
-func TranslateWords(words string) string {
+var translator *languagetranslatorv3.LanguageTranslatorV3
 
+func init() {
+	fmt.Println("in init")
 	apiKey := os.Getenv("WATSON_API_KEY")
 	urlService := os.Getenv("WATSON_URL_SERVICE")
 
@@ -26,13 +28,13 @@ func TranslateWords(words string) string {
 		Authenticator: authenticator,
 	}
 
-	translator, err := languagetranslatorv3.NewLanguageTranslatorV3(options)
-
-	if err != nil {
-		panic(err)
-	}
-
+	translator, _ = languagetranslatorv3.NewLanguageTranslatorV3(options)
 	translator.SetServiceURL(urlService)
+}
+
+func TranslateWords(words string) string {
+
+	fmt.Println("in translate")
 
 	// real translation
 	result, _, translateErr := translator.Translate(

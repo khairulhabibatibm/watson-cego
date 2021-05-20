@@ -8,8 +8,9 @@ import (
 
 func main() {
 
-	r := gin.Default()
 	gin.SetMode(gin.ReleaseMode)
+
+	r := gin.Default()
 
 	indoWords := TranslateWords("Selamat Pagi Semua. Senang rasanya bisa berada di sini")
 
