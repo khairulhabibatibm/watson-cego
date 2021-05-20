@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -28,6 +29,8 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
+
+		fmt.Println(input.word)
 
 		englishWord := TranslateWords(input.word)
 
