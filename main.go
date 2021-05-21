@@ -7,8 +7,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Setting up struct for POST body request
 type MyInput struct {
-	word string
+	Word string `form:"word" json:"word" binding:"required"`
 }
 
 func main() {
@@ -30,9 +31,9 @@ func main() {
 			panic(err)
 		}
 
-		fmt.Println(input.word)
+		fmt.Println("received input " + input.Word)
 
-		englishWord := TranslateWords(input.word)
+		englishWord := TranslateWords(input.Word)
 
 		c.JSON(http.StatusOK, gin.H{"data": englishWord})
 	})

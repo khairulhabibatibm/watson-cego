@@ -28,13 +28,20 @@ func init() {
 		Authenticator: authenticator,
 	}
 
-	translator, _ = languagetranslatorv3.NewLanguageTranslatorV3(options)
+	var translateErr error
+
+	translator, translateErr = languagetranslatorv3.NewLanguageTranslatorV3(options)
+
+	if translateErr != nil {
+		panic(translateErr)
+	}
+
 	translator.SetServiceURL(urlService)
+
 }
 
 func TranslateWords(words string) string {
-
-	fmt.Println("in translate")
+	fmt.Println("in translate for " + words)
 
 	// real translation
 	result, _, translateErr := translator.Translate(
