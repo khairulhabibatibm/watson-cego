@@ -20,11 +20,6 @@ func main() {
 
 	var input MyInput
 
-	r.GET("/", func(c *gin.Context) {
-		englishWord := TranslateWords("Selamat Pagi Semua. Senang rasanya bisa berada di sini")
-		c.JSON(http.StatusOK, gin.H{"data": englishWord})
-	})
-
 	r.POST("/", func(c *gin.Context) {
 		err := c.ShouldBindJSON(&input)
 		if err != nil {
@@ -35,7 +30,9 @@ func main() {
 
 		englishWord := TranslateWords(input.Word)
 
-		c.JSON(http.StatusOK, gin.H{"data": englishWord})
+		analyzeResult := Annotator(englishWord)
+
+		c.JSON(http.StatusOK, gin.H{"result": analyzeResult})
 	})
 
 	r.Run()
