@@ -40,14 +40,14 @@ func init() {
 
 }
 
-func TranslateWords(words string) string {
+func TranslateWords(words string, lang string) string {
 	fmt.Println("in translate for " + words)
 
 	// real translation
 	result, _, translateErr := translator.Translate(
 		&languagetranslatorv3.TranslateOptions{
 			Text:    []string{words},
-			ModelID: core.StringPtr("id-en"),
+			ModelID: core.StringPtr(lang + "-en"),
 		},
 	)
 

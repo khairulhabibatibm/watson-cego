@@ -9,7 +9,8 @@ import (
 
 // Setting up struct for POST body request
 type MyInput struct {
-	Word string `form:"word" json:"word" binding:"required"`
+	Word string `form:"diagnose" json:"diagnose" binding:"required"`
+	Lang string `form:"lang" json:"lang" binding:"required"`
 }
 
 func main() {
@@ -28,7 +29,7 @@ func main() {
 
 		fmt.Println("received input " + input.Word)
 
-		englishWord := TranslateWords(input.Word)
+		englishWord := TranslateWords(input.Word, input.Lang)
 
 		analyzeResult := Annotator(englishWord)
 
