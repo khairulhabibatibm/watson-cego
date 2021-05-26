@@ -32,7 +32,7 @@ func init() {
 
 	pipelineOptions = ACD.NewRunPipelineOptions()
 	cdParams := make(map[string][]string)
-	cdParamValue := []string{"false"}
+	cdParamValue := []string{"true"}
 	cdParams["apply_spell_check"] = cdParamValue
 	cdAnnotator, err := ACD.NewAnnotator("symptom_disease")
 	cdAnnotator.Parameters = cdParams
