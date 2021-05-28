@@ -12,9 +12,14 @@ import (
 var translator *languagetranslatorv3.LanguageTranslatorV3
 
 func init() {
-	fmt.Println("in init")
-	apiKey := os.Getenv("LANGUAGE_TRANSLATOR_APIKEY")
-	urlService := os.Getenv("LANGUAGE_TRANSLATOR_URL")
+	apiKey, exist := os.LookupEnv("LANGUAGE_TRANSLATOR_APIKEY")
+	if !exist {
+		fmt.Println("No apikey defined")
+	}
+	urlService, exist := os.LookupEnv("LANGUAGE_TRANSLATOR_URL")
+	if !exist {
+		fmt.Println("No url defined")
+	}
 
 	// initial everything
 	authenticator := &core.IamAuthenticator{

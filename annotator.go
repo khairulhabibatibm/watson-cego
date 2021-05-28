@@ -13,9 +13,16 @@ var pipelineOptions *annotatorforclinicaldataacdv1.RunPipelineOptions
 var ACD *annotatorforclinicaldataacdv1.AnnotatorForClinicalDataAcdV1
 
 func init() {
-	apikey := os.Getenv("WH_ACD_APIKEY")
+
+	apikey, exist := os.LookupEnv("WH_ACD_APIKEY")
+	if !exist {
+		fmt.Println("No apikey defined")
+	}
 	version := "2020-11-02"
-	url := os.Getenv("WH_ACD_URL")
+	url, exist := os.LookupEnv("WH_ACD_URL")
+	if !exist {
+		fmt.Println("No url defined")
+	}
 
 	var err error
 
